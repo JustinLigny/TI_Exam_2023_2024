@@ -22,4 +22,11 @@ public class PublicationController
         publicationCreateDto.CreatedByUserId = userId;
         return _publicationService.Create(publicationCreateDto);
     }
+    
+    [HttpGet("/users/{userId}/publications")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public List<PublicationResponseDto> GetAllFromFriends(int userId)
+    {
+        return _publicationService.GetAllFromFriends(userId);
+    }
 }

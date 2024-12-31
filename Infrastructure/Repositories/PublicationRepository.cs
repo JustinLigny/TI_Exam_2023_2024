@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
@@ -22,6 +23,8 @@ public class PublicationRepository: IPublicationRepository
     public List<DbPublication> GetAllFromFriends(int userId)
     {
         // TODO CHanger par celle des amis
-        return _context.Publications.ToList();
+        return _context.Publications
+            .Include(p => p.CreatedByUser)
+            .ToList();
     }
 }

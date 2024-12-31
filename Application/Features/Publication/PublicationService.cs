@@ -29,4 +29,10 @@ public class PublicationService
         var publicationDbCreated = _publicationRepository.Create(publicationDb);
         return _mapper.Map<PublicationResponseDto>(publicationDbCreated);
     }
+    
+    public List<PublicationResponseDto> GetAllFromFriends(int userId)
+    {
+        var publications = _publicationRepository.GetAllFromFriends(userId);
+        return _mapper.Map<List<PublicationResponseDto>>(publications);
+    }
 }
