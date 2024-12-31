@@ -48,5 +48,33 @@ public class InvitationService
         var invitations = _invitationRepository.GetInvitationsByInvitedId(userInvitedId);
         return _mapper.Map<List<InvitationResponseDto>>(invitations);
     }
+
+    public InvitationResponseDto RejectInvitation(int invitationId)
+    {
+        var invitationOptional = _invitationRepository.GetById(invitationId);
+        if(invitationOptional == null)
+            throw new EntityDoesNotExistsException("This invitation does not exist");
+
+        if(invitationOptional.Status != "PENDING")
+            throw new RequestCannotBePerformedException("You can not reject an invitation that is not pending");
+        
+        invitationOptional.Status = "REJECTED";
+        var invitationDbUpdated  = _invitationRepository.Update(invitationOptional);
+        return _mapper.Map<InvitationResponseDto>(invitationDbUpdated);
+    }
+    
+    public InvitationResponseDto AcceptInvitation(int invitationId)
+    {
+        var invitationOptional = _invitationRepository.GetById(invitationId);
+        if(invitationOptional == null)
+            throw new EntityDoesNotExistsException("This invitation does not exist");
+
+        if(invitationOptional.Status != "PENDING")
+            throw new RequestCannotBePerformedException("You can not accept an invitation that is not pending");
+        
+        invitationOptional.Status = "ACCEPTED";
+        var invitationDbUpdated  = _invitationRepository.Update(invitationOptional);
+        return _mapper.Map<InvitationResponseDto>(invitationDbUpdated);
+    }
     
 }

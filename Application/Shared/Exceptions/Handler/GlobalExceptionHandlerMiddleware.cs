@@ -21,7 +21,8 @@ public class GlobalExceptionHandlerMiddleware : AbstractExceptionHandlerMiddlewa
             case EntityHasChildrenException
                 or EntityCannotBeDeletedException
                 or EntityAlreadyAssignedException
-                or EntityAlreadyExistsException:
+                or EntityAlreadyExistsException
+                or RequestCannotBePerformedException:
                     code = HttpStatusCode.Conflict;
                     break;
             

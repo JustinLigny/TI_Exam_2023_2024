@@ -36,4 +36,18 @@ public class InvitationController
     {
         return _invitationService.GetInvitationsAsInvited(userInvitedId);
     }
+
+    [HttpPatch("invitations/{invitationId}/reject")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public InvitationResponseDto RejectInvitation(int invitationId)
+    {
+        return _invitationService.RejectInvitation(invitationId);
+    }
+    
+    [HttpPatch("invitations/{invitationId}/accept")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public InvitationResponseDto AcceptInvitation(int invitationId)
+    {
+        return _invitationService.AcceptInvitation(invitationId);
+    }
 }

@@ -19,6 +19,25 @@ public class InvitationRepository: IInvitationRepository
         return invitation.Clone();
     }
 
+    public DbInvitation? GetById(int invitationId)
+    {
+        return _context.Invitations
+            .Include(i => i.UserSender)
+            .Include(i => i.UserInvited)
+            .FirstOrDefault(i => i.Id == invitationId);
+    }
+
+    public DbInvitation Update(DbInvitation invitation)
+    {
+        _context.Invitations.Update(invitation);
+        _context.SaveChanges();
+        
+        return _context.Invitations
+            .Include(i => i.UserSender)
+            .Include(i => i.UserInvited)
+            .First(i => i.Id == invitation.Id);
+    }
+
     public bool ExistsByUserSenderIdAndUserInvitedId(int userSenderId, int userInvitedId)
     {
         return _context.Invitations.Any(
