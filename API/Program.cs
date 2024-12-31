@@ -1,4 +1,5 @@
 using Application.Core.User;
+using Application.Features.Invitation;
 using Application.Features.Publication;
 using Application.Shared.Exceptions.Handler;
 using Application.Shared.Mapper;
@@ -36,8 +37,12 @@ builder.Services.AddCors(options =>
 builder.Services.AddAutoMapper(typeof(Mapper));
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 builder.Services.AddScoped<PublicationService>();
 builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
+
+builder.Services.AddScoped<InvitationService>();
+builder.Services.AddScoped<IInvitationRepository, InvitationRepository>();
 
 
 

@@ -1,4 +1,5 @@
 ﻿using Application.Core.User.Dtos;
+using Application.Features.Invitation.Dtos;
 using Application.Features.Publication.Dtos;
 using AutoMapper;
 using Domain;
@@ -17,5 +18,10 @@ public class Mapper: Profile
         CreateMap<PublicationCreateDto, Publication>();
         CreateMap<Publication, DbPublication>().ReverseMap();
         CreateMap<DbPublication, PublicationResponseDto>();
+        
+        CreateMap<InvitationCreateDto, Invitation>();
+        CreateMap<Invitation, DbInvitation>().ReverseMap();
+        CreateMap<DbInvitation, InvitationResponseDto>();
+        
     }
 }

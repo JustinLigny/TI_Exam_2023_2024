@@ -19,11 +19,10 @@ public class UserService
 
     public UserResponseDTO Create(UserCreateDTO userDto)
     {
-        var userDomain = _mapper.Map<Domain.User>(userDto);
-
-        if (_userRepository.ExistsByPseudo(userDomain.Pseudo))
+        if (_userRepository.ExistsByPseudo(userDto.Pseudo))
             throw new EntityAlreadyExistsException("Pseudo already exists");
         
+        var userDomain = _mapper.Map<Domain.User>(userDto);
         var userDb = _mapper.Map<DbUser>(userDomain);
         var userDbCreated = _userRepository.Create(userDb);
         return _mapper.Map<UserResponseDTO>(userDbCreated);

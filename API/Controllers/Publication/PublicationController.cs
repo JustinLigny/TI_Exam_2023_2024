@@ -15,7 +15,7 @@ public class PublicationController
         _publicationService = publicationService;
     }
 
-    [HttpPost("/users/{userId}/publications")]
+    [HttpPost("users/{userId}/publications")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     public PublicationResponseDto Create(int userId, [FromBody] PublicationCreateDto publicationCreateDto)
     {
@@ -23,7 +23,7 @@ public class PublicationController
         return _publicationService.Create(publicationCreateDto);
     }
     
-    [HttpGet("/users/{userId}/publications")]
+    [HttpGet("users/{userId}/publications")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public List<PublicationResponseDto> GetAllFromFriends(int userId)
     {

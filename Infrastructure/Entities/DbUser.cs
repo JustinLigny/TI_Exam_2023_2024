@@ -7,6 +7,8 @@ public class DbUser
     public string Role { get; set; }
     
     public ICollection<DbPublication> Publications { get; set; } = new List<DbPublication>();
+    public ICollection<DbInvitation> InvitationsAsSender { get; set; } = new List<DbInvitation>();
+    public ICollection<DbInvitation> InvitationsAsInvited { get; set; } = new List<DbInvitation>();
 
     public DbUser Clone()
     {
