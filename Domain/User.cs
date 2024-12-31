@@ -8,6 +8,10 @@ public class User
     private string _pseudo;
     private string _role;
 
+    public ICollection<Publication> Publications { get; set; } = new List<Publication>();
+    public ICollection<Invitation> InvitationsAsSender { get; set; } = new List<Invitation>();
+    public ICollection<Invitation> InvitationsAsInvited { get; set; } = new List<Invitation>();
+ 
     public int Id
     {
         get => _id;

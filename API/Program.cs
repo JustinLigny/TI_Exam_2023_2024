@@ -1,4 +1,5 @@
 using Application.Core.User;
+using Application.Features.Publication;
 using Application.Shared.Exceptions.Handler;
 using Application.Shared.Mapper;
 using Infrastructure;
@@ -32,9 +33,11 @@ builder.Services.AddCors(options =>
  *  SERVICES
  *  ======================================================
  */
-builder.Services.AddAutoMapper(typeof(UserMapper));
+builder.Services.AddAutoMapper(typeof(Mapper));
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<PublicationService>();
+builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
 
 
 
